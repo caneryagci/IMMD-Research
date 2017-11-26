@@ -41,14 +41,24 @@ Rth_c1=0.000001  ;      %K/W
 Rth_c2=0.000001   ;     %K/W
 Rth_c3=0.000001   ;     %K/W
 Rth_paste=0.015  ;     %K/W
-Rth_heatsink=0.05;      %K/W
-
+arr=zeros(10,1)
 open_system('Resistive_thermal_model');
-sim('Resistive_thermal_model');
+for i= 1:1:10
+   Rth_heatsink = 0.01*i;      %K/W
+    sim('Resistive_thermal_model');
+    arr(i)= Tj_IGBT(51);
+end;
 
 
-%relSlip_vals = [0.01 0.02 0.03 0.06];    %K/W
+%x = logsout.getElement({1})
+%ds = Simulink.SimulationData.Dataset(arr);
 
+%tempaxis=ScopeData1(:,2)
+% timeaxis=ScopeData1(:,1)
+%numel(tempaxis)
+%tempaxis(numel(tempaxis))
+
+%%relSlip_vals = [0.01 0.02 0.03 0.06];    %K/W
 %for i = 1:length(relSlip_vals)
  %   simIn(i) = Simulink.SimulationInput('Resistive_thermal_model');
   % simIn(i) = setVariable(simIn(i),' Rth_heatsink',relSlip_vals(i));
