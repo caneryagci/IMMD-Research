@@ -1,3 +1,4 @@
+Power_loss = 10;
 Rth_jc = 0.5;
 Rth_pcb = 4.5;
 R_tim = 1.5;
